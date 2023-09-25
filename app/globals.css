@@ -27,36 +27,52 @@ body {
 }
 
 .bg-animate {
-  background: linear-gradient(-45deg, #EE7752, #23A6D5, #23D5AB);
+  background: linear-gradient(-45deg, #ee7752, #23a6d5, #23d5ab);
   background-size: 500% 100%;
   -webkit-animation: bg-animate 30s ease-in-out 0s infinite forwards;
   animation: bg-animate 30s ease-in-out 0s infinite forwards;
-  color: #fefefe
+  color: #fefefe;
 }
 
-.rotate {
-  animation: rotation 3s infinite cubic-bezier(.175,.885,.32,1.275);
+.rotate-1 {
+  animation: rotation 3s infinite cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.rotate-2 {
+  animation: rotation 3s infinite cubic-bezier(0.79, 0.33, 0.14, 0.53);
+}
+
+.rotate-3 {
+  animation: rotation 3s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.rotate-4 {
+  animation: rotation 3s infinite cubic-bezier(0.55, 0.085, 0.68, 0.53);
+}
+
+.rotate-5 {
+  animation: rotation 3s infinite cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
 @keyframes rotation {
   from {
-      transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   to {
-      transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
 @keyframes bg-animate {
   0% {
-      background-position: 0 50%
+    background-position: 0 50%;
   }
 
   50% {
-      background-position: 100% 50%
+    background-position: 100% 50%;
   }
 
   100% {
-      background-position: 0 50%
+    background-position: 0 50%;
   }
 }
