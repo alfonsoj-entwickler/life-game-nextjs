@@ -1,6 +1,7 @@
 import { useState, MouseEvent } from "react";
 import Image from "next/image";
 import { Cell as CellType } from "@/types/Cell";
+import randomModelCell from "@/helpers/randomModelCell";
 
 type Props = {
   item: CellType;
@@ -29,12 +30,12 @@ const Cell = ({ item }: Props) => {
       onClick={(e) => handleClick(e)}
     >
       <div className={`${cells.active ? "block" : "hidden"}`}>
-        <div className={`${cells.action && "rotate"}`}>
+        <div className={`${cells.action && `rotate-${randomModelCell(5)}`}`}>
           <Image
-            src="assets/images/bacteria-svgrepo-com_2.svg"
+            src={`assets/images/cell-model-${randomModelCell(5)}.svg`}
             alt="cell image"
             width={50}
-            height={50}
+            height={50} 
           />
         </div>
       </div>
