@@ -1,6 +1,6 @@
 export type Cell = {
     id: string;
-    active: boolean;
-    action?: boolean;
+    active: boolean; 
     model?: string;
+    rotate?: string;
 }
