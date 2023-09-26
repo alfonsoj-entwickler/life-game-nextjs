@@ -1,11 +1,11 @@
 import { create } from "zustand";
 
 interface CellState {
-  bears: boolean;
-  increase: (by: boolean) => void;
+  stateAnimations: boolean;
+  setAnimation: () => void;
 }
 
-const useActionAnimation = create<CellState>()((set) => ({
-  bears: true,
-  increase: (by) => set((state) => ({ bears: by })),
+export const useActionAnimation = create<CellState>()((set) => ({
+  stateAnimations: true,
+  setAnimation: () => set((state) => ({ stateAnimations: !state.stateAnimations })),
 }));
