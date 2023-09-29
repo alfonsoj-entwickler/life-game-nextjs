@@ -1,7 +1,6 @@
 import { useState, MouseEvent } from "react";
 import Image from "next/image";
 import { Cell as CellType } from "@/types/Cell";
-import randomModelCell from "@/helpers/randomModelCell";
 import { useActionAnimation } from "@/context/useActionAnimation";
 
 type Props = {
