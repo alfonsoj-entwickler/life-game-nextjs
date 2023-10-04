@@ -54,6 +54,14 @@ body {
   animation: rotation 3s infinite cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
+.rotate-6 {
+  animation: rotation 3s infinite cubic-bezier(0.25, 0.085, 0.45, 0.53);
+}
+
+.rotate-7 {
+  animation: rotation 3s infinite cubic-bezier(0.25, 0.3,  0.14, 0.915);
+}
+
 @keyframes rotation {
   from {
     transform: rotate(0deg);
