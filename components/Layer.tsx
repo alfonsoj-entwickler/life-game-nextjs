@@ -9,7 +9,7 @@ const Layer = () => {
   const [cells, setCells] = useState<CellType[]>([]);
   const windowSize = useWindowSize();
 
-  useEffect(() => {
+  const resetCellsLayer = () => {
     if (windowSize.width && windowSize.height) {
       const sizeArray =
         Math.floor(windowSize.width / 50) * Math.floor(windowSize.height / 50);
@@ -27,6 +27,10 @@ const Layer = () => {
 
       setCells(cellsArray);
     }
+  }
+
+  useEffect(() => {
+    resetCellsLayer()
   }, [windowSize]);
 
   return (
