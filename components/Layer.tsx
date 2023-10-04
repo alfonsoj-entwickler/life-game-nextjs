@@ -21,8 +21,8 @@ const Layer = () => {
         .map((cell, index) => ({
           ...cell,
           id: index,
-          model: `${randomModelCell(6)}`,
-          rotate: `${randomModelCell(5)}`,
+          model: `${randomModelCell(7)}`,
+          rotate: `${randomModelCell(7)}`,
         }));
 
       setCells(cellsArray);
