@@ -1,6 +1,6 @@
 const SelectModel = () => {
     return(
-        <div className="flex space-x-2">
+        <div className="flex space-x-2 text-lg">
           <label htmlFor="model-cell">Choose a model:</label>
           <select name="models" id="model-cell">
             <option value="random">Random</option>
