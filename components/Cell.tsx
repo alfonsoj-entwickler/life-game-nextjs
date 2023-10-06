@@ -1,7 +1,7 @@
 import { useState, MouseEvent } from "react";
 import Image from "next/image";
 import { Cell as CellType } from "@/types/Cell";
-import { useActionAnimation } from "@/context/useActionAnimation";
+import { useActionConfig } from "@/context/useActionConfig";
 
 type Props = {
   item: CellType;
@@ -14,7 +14,7 @@ const Cell = ({ item }: Props) => {
     model: item.model,
     rotate: item.rotate,
   });
-  const { stateAnimations } = useActionAnimation(); 
+  const { stateAnimations } = useActionConfig(); 
 
   const handleClick = (e: MouseEvent) => {
     //console.log("ClickEvent--> ",e, e.pageX, e.pageY);
