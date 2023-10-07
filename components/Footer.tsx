@@ -1,13 +1,13 @@
 "use client";
-import { useActionAnimation } from "@/context/useActionAnimation";
+import { useActionConfig } from "@/context/useActionConfig";
 import Button from "./Button";
 import Switch from "./Switch";
 import SelectModel from "./SelectModel";
 
 const Footer = () => {
-  const { stateAnimations, setAnimation } = useActionAnimation();
+  const { stateAnimations, stateLayer, setAnimation, setLayer } = useActionConfig();
   return (
-    <footer className="fixed bottom-0 w-screen h-16 text-gray-900 bg-yellow-100 z-10">
+    <footer className="fixed bottom-0 w-screen h-16 text-gray-900 bg-[#23d5ab] z-10">
       <div className="h-full flex justify-between items-center space-x-6 px-10">
         <div>
           <SelectModel />
@@ -61,16 +61,14 @@ const Footer = () => {
         <div className="flex space-x-6">
         <Switch
           text="Toggle Animation"
-          color="blue"
           statusChecked={stateAnimations}
           handlerChange={setAnimation}
         />
         
         <Switch
           text="Block Layer"
-          color="green"
-          statusChecked={stateAnimations}
-          handlerChange={setAnimation}
+          statusChecked={stateLayer}
+          handlerChange={setLayer}
         />
         </div>
         
