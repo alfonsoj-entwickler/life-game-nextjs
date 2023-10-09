@@ -60,13 +60,15 @@ const Footer = () => {
         </div>
         <div className="flex space-x-6">
         <Switch
-          text="Toggle Animation"
+          onText="On Animation"
+          offText="Off Animation"
           statusChecked={stateAnimations}
           handlerChange={setAnimation}
         />
         
         <Switch
-          text="Block Layer"
+          onText="Disable Layer"
+          offText="Enable Layer"
           statusChecked={stateLayer}
           handlerChange={setLayer}
         />
