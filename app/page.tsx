@@ -4,7 +4,7 @@ import Layer from '@/components/Layer'
 
 export default function Home() {
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-between bg-animate">
+    <main className="relative flex h-screen flex-col items-center justify-between bg-animate">
         <Header />
         <Layer />
         <Footer />
