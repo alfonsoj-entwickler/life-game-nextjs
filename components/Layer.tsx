@@ -2,11 +2,13 @@
 import { useState, useEffect } from "react";
 import Cell from "./Cell";
 import { Cell as CellType } from "@/types/Cell";
-import useWindowSize from "@/hooks/useWindowSize";
 import randomModelCell from "@/helpers/randomModelCell";
+import useWindowSize from "@/hooks/useWindowSize";
+import { useActionConfig } from "@/context/useActionConfig";
 
 const Layer = () => {
   const [cells, setCells] = useState<CellType[]>([]);
+  const { stateLayer } = useActionConfig();
   const windowSize = useWindowSize();
 
   const resetCellsLayer = () => {
@@ -34,7 +36,7 @@ const Layer = () => {
   }, [windowSize]);
 
   return (
-    <div className="relative w-full h-screen flex flex-wrap justify-center items-center">
+    <div className={`relative w-full h-screen flex flex-wrap justify-center items-center ${stateLayer && "pointer-events-none"}`}>
       {cells.length > 0 &&
         cells.map((item) => <Cell key={`cell-${item.id}`} item={item} />)}
     </div>
