@@ -10,11 +10,11 @@ type Props = {
 const Cell = ({ item }: Props) => {
   const [cells, setCells] = useState<CellType>({
     id: item.id,
-    active: item.active, 
+    active: item.active,
     model: item.model,
     rotate: item.rotate,
   });
-  const { stateAnimations } = useActionConfig(); 
+  const { stateAnimations } = useActionConfig();
 
   const handleClick = (e: MouseEvent) => {
     //console.log("ClickEvent--> ",e, e.pageX, e.pageY);
@@ -26,8 +26,7 @@ const Cell = ({ item }: Props) => {
 
   return (
     <div
-    id={`cell-${cells.id}`}
-      className="w-[50px] h-[50px] cursor-pointer "
+      className="w-[40px] h-[40px] cursor-pointer"
       onClick={(e) => handleClick(e)}
     >
       <div className={`${cells.active ? "block" : "hidden"}`}>
@@ -36,7 +35,7 @@ const Cell = ({ item }: Props) => {
             src={`assets/images/cell-model-${cells.model}.svg`}
             alt="cell image"
             width={50}
-            height={50} 
+            height={50}
           />
         </div>
       </div>
