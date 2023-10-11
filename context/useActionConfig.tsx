@@ -18,7 +18,7 @@ interface CellState {
 export const useActionConfig = create<CellState>()((set) => ({
   cells: null,
   setCells: (cells) => set(() => ({ cells })),
-  // Creates a new Cell object and appends it to the current todos state.
+  // Creates  Cells object and appends it to the current todos state.
   resetCells: (width, height) =>
     set(({ cells }) => {
       if (width && height) {
