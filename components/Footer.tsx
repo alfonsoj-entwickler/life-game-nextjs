@@ -3,6 +3,7 @@ import { useActionConfig } from "@/context/useActionConfig";
 import Button from "./Button";
 import Switch from "./Switch";
 import SelectModel from "./SelectModel";
+import SelectSize from "./SelectSize";
 import useWindowSize from "@/hooks/useWindowSize";
 
 const Footer = () => {
@@ -12,10 +13,11 @@ const Footer = () => {
   return (
     <footer className="fixed bottom-0 w-screen h-16 text-gray-900 bg-[#23d5ab] z-10">
       <div className="h-full flex justify-between items-center space-x-6 px-10">
-        <div>
+        <div className="flex space-x-6">
+          <SelectSize />
           <SelectModel />
         </div>
-        <div className="flex space-x-6">
+        <div className="flex flex-1 justify-center space-x-6">
         <Button text="Reset" onClick={ e => resetCells(windowSize.width, windowSize.height)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -68,10 +70,9 @@ const Footer = () => {
           statusChecked={stateAnimations}
           handlerChange={setAnimation}
         />
-        
         <Switch
-          onText="Disable Layer"
-          offText="Enable Layer"
+          onText="Off Layer"
+          offText="On Layer"
           statusChecked={stateLayer}
           handlerChange={setLayer}
         />
