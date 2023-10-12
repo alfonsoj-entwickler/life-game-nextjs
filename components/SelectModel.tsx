@@ -2,7 +2,7 @@ const SelectModel = () => {
     return(
         <div className="flex space-x-2 text-lg">
           <label htmlFor="model-cell">Choose a model:</label>
-          <select name="models" id="model-cell">
+          <select name="models" id="model-cell" className="outline-none">
             <option value="random">Random</option>
             <option value="cell-1">Cell 1</option>
             <option value="cell-2">Cell 2</option>
