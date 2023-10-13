@@ -22,7 +22,8 @@ export const useActionConfig = create<CellState>()((set) => ({
   resetCells: (width, height) =>
     set(({ cells }) => {
       if (width && height) {
-        const sizeArray = Math.floor(width / 40) * Math.floor(height / 40);
+        // (window.height - (header.height + footer.height))
+        const sizeArray = Math.floor(width / 40) * Math.floor((height - 128)/ 40);
 
         const cellsArray = Array.from(Array(sizeArray))
           .fill({
