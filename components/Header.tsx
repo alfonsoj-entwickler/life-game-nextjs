@@ -1,6 +1,6 @@
 const Header = () => {
   return (
-    <header className="fixed top-0 w-screen h-16 px-10 flex justify-between items-center bg-[#ee7752] text-gray-900 z-10">
+    <header className="w-screen h-[4rem] px-10 flex justify-between items-center bg-[#ee7752] text-gray-900 z-10">
       <div>
         <h1 className="text-4xl">Life-Game</h1>
       </div>
