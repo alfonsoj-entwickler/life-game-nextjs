@@ -11,7 +11,7 @@ const Footer = () => {
   const windowSize = useWindowSize();
 
   return (
-    <footer className="fixed bottom-0 w-screen h-16 text-gray-900 bg-[#23d5ab] z-10">
+    <footer className="w-screen h-[4rem] text-gray-900 bg-[#23d5ab] z-10">
       <div className="h-full flex justify-between items-center space-x-6 px-10">
         <div className="flex space-x-6">
           <SelectSize />
