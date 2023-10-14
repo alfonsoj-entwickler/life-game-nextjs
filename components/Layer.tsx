@@ -13,15 +13,15 @@ const Layer = () => {
   }, [windowSize]);
 
   return (
-    <div
-      className={`relative w-full h-screen flex flex-wrap justify-center items-center ${
+    <main
+      className={`relative flex-1 w-full h-screen flex flex-wrap justify-center items-center ${
         stateLayer && "pointer-events-none"
       }`}
     >
       {cells?.map((item) => (
         <Cell key={`cell-${item.id}`} item={item} />
       ))}
-    </div>
+    </main>
   );
 };
 export default Layer;
