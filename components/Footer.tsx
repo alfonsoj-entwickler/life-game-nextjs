@@ -1,13 +1,15 @@
 "use client";
-import { useActionConfig } from "@/context/useActionConfig";
 import Button from "./Button";
 import Switch from "./Switch";
 import SelectModel from "./SelectModel";
 import SelectSize from "./SelectSize";
 import useWindowSize from "@/hooks/useWindowSize";
+import { useActionConfig } from "@/context/useActionConfig";
+import { useLayerConfig } from "@/context/useLayerConfig";
 
 const Footer = () => {
-  const { stateAnimations, stateLayer, setAnimation, setLayer, resetCells } = useActionConfig();
+  const { resetCells } = useActionConfig();
+  const { stateAnimations, stateLayer, setAnimation, setLayer } = useLayerConfig();
   const windowSize = useWindowSize();
 
   return (

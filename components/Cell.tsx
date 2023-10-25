@@ -1,41 +1,34 @@
-import { useState, MouseEvent } from "react";
+import { MouseEvent } from "react";
 import Image from "next/image";
 import { Cell as CellType } from "@/types/Cell";
 import { useActionConfig } from "@/context/useActionConfig";
+import { useLayerConfig } from "@/context/useLayerConfig";
 
 type Props = {
   item: CellType;
 };
 
 const Cell = ({ item }: Props) => {
-  const [cells, setCells] = useState<CellType>({
-    id: item.id,
-    active: item.active,
-    model: item.model,
-    rotate: item.rotate,
-  });
-  const { stateAnimations } = useActionConfig();
+  const { sizeCell, updateActiveCell } = useActionConfig();
+  const { stateAnimations } = useLayerConfig();
+  const rotateModel = `rotate-${item.rotate}`;
 
   const handleClick = (e: MouseEvent) => {
-    //console.log("ClickEvent--> ",e, e.pageX, e.pageY);
-    setCells({
-      ...cells,
-      active: !cells.active,
-    });
+    updateActiveCell(item.id);
   };
 
   return (
     <div
-      className="w-[40px] h-[40px] cursor-pointer"
+      className={`model-${sizeCell} cursor-pointer`}
       onClick={(e) => handleClick(e)}
     >
-      <div className={`${cells.active ? "block" : "hidden"}`}>
-        <div className={`${stateAnimations && `rotate-${cells.rotate}`}`}>
+      <div className={`${item.active ? "block" : "hidden"}`}>
+        <div className={`${stateAnimations ? rotateModel : "rotate-none"}`}>
           <Image
-            src={`assets/images/cell-model-${cells.model}.svg`}
+            src={`assets/images/cell-model-${item.model}.svg`}
             alt="cell image"
-            width={50}
-            height={50}
+            width={sizeCell}
+            height={sizeCell}
           />
         </div>
       </div>

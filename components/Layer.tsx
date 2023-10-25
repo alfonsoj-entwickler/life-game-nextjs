@@ -3,9 +3,11 @@ import { useEffect } from "react";
 import Cell from "./Cell";
 import useWindowSize from "@/hooks/useWindowSize";
 import { useActionConfig } from "@/context/useActionConfig";
+import { useLayerConfig } from "@/context/useLayerConfig";
 
 const Layer = () => {
-  const { cells, stateLayer, resetCells } = useActionConfig();
+  const { cells, resetCells } = useActionConfig();
+  const { stateLayer } = useLayerConfig();
   const windowSize = useWindowSize();
 
   useEffect(() => {
