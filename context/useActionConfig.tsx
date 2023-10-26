@@ -35,7 +35,7 @@ export const useActionConfig = create<CellState>()((set) => ({
     set(({ cells }) => {
       const updateCells = cells?.map((cell) => ({
         ...cell,
-        model: `${model === "random" ? randomModelCell(7) : model}`,
+        model: `${model === "random" ? randomModelCell(8) : model}`,
       }));
       return { cells: updateCells, modelCell: model };
     }),
@@ -58,8 +58,8 @@ export const useActionConfig = create<CellState>()((set) => ({
             ...cell,
             index,
             id: uuid(),
-            model: `${modelCell === "random" ? randomModelCell(7) : modelCell}`,
-            rotate: `${randomModelCell(7)}`,
+            model: `${modelCell === "random" ? randomModelCell(8) : modelCell}`,
+            rotate: `${randomModelCell(8)}`,
           }));
         return { cells: cellsArray, lifeCells: 0, dieCells: 0, totalCells: 0, rows: rowsCell, columns: columnsCell };
       }
