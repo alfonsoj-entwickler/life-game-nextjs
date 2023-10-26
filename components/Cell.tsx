@@ -19,7 +19,7 @@ const Cell = ({ item }: Props) => {
 
   return (
     <div
-      className={`model-${sizeCell} cursor-pointer`}
+      className={`model-${sizeCell} cursor-pointer bg-transparent transition hover:bg-white/20`}
       onClick={(e) => handleClick(e)}
     >
       <div className={`${item.active ? "block" : "hidden"}`}>
