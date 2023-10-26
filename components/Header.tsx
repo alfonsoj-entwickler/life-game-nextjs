@@ -1,8 +1,13 @@
 "use client";
 import { useActionConfig } from "@/context/useActionConfig";
+import { useLayerConfig } from "@/context/useLayerConfig";
 
 const Header = () => {
   const { rows, columns, lifeCells, dieCells, totalCells } = useActionConfig();
+  const {
+
+    stateWorld
+  } = useLayerConfig();
 
   return (
     <header className="w-screen h-[4rem] px-10 flex justify-between items-center bg-[#ee7752] text-gray-900 z-10">
@@ -10,17 +15,30 @@ const Header = () => {
         <h1 className="text-4xl">Life-Game</h1>
       </div>
       <div className="w-1/3 text-center">
-        <p className="text-2xl">{rows} x {columns}</p>
+        <p className="text-2xl">{stateWorld ? "Working ..." : "Pause"}</p>
       </div>
       <div className="w-1/3 flex flex-nowrap justify-end items-center space-x-4 text-2xl">
-        <p className="min-w-[3rem]">
-          Life: <span className="text-red-600">{lifeCells}</span>
+        <p className="flex">
+          Rows:{" "}
+          <span className="min-w-[2rem] text-slate-600">&nbsp;{rows}</span>
         </p>
-        <p>
-          Die: <span className="text-blue-600">{dieCells}</span>
+        <p className="flex">
+          Columns:{" "}
+          <span className="min-w-[2rem] text-slate-600">&nbsp;{columns}</span>
         </p>
-        <p>
-          Total: <span className="text-green-600">{totalCells}</span>
+        <p className="flex">
+          Life:{" "}
+          <span className="min-w-[3rem] text-red-600">&nbsp;{lifeCells}</span>
+        </p>
+        <p className="flex">
+          Die:{" "}
+          <span className="min-w-[3rem] text-blue-600">&nbsp;{dieCells}</span>
+        </p>
+        <p className="flex">
+          Total:{" "}
+          <span className="min-w-[3rem] text-green-600">
+            &nbsp;{totalCells}
+          </span>
         </p>
       </div>
     </header>
