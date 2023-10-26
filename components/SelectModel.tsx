@@ -25,6 +25,7 @@ const SelectModel = () => {
         <option value="5">Cell 5</option>
         <option value="6">Cell 6</option>
         <option value="7">Cell 7</option>
+        <option value="8">Cell 8</option>
       </select>
     </div>
   );
