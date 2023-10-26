@@ -2,15 +2,23 @@ import { create } from "zustand";
 
 interface LayerState {
   stateAnimations: boolean;
-  setAnimation: () => void;
+  setAnimation: (status: boolean) => void;
   stateLayer: boolean;
-  setLayer: () => void;
+  setLayer: (status: boolean) => void;
+  stateLoading: boolean;
+  setLoading: () => void;
+  stateWorld: boolean;
+  setWorld: (status: boolean) => void;
 }
 
 export const useLayerConfig = create<LayerState>()((set) => ({
   stateAnimations: true,
   stateLayer: false,
-  setAnimation: () =>
-    set((state) => ({ stateAnimations: !state.stateAnimations })),
-  setLayer: () => set((state) => ({ stateLayer: !state.stateLayer })),
+  stateLoading: false,
+  stateWorld: false,
+  setAnimation: (status) =>
+    set((state) => ({ stateAnimations: status })),
+  setLayer: (status) => set((state) => ({ stateLayer: status })),
+  setLoading: () => set((state) => ({ stateLoading: !state.stateLoading })),
+  setWorld: (status) => set((state) => ({ stateWorld: status })),
 }));
