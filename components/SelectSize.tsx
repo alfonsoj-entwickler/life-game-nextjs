@@ -1,6 +1,7 @@
 import { ChangeEvent } from "react";
 import { useActionConfig } from "@/context/useActionConfig";
 import useWindowSize from "@/hooks/useWindowSize";
+import {valuesSize} from "@/helpers/valuesSelects"
 
 const SelectSize = () => {
   const { sizeCell, setSizeCells, resetCells } = useActionConfig();
@@ -21,12 +22,9 @@ const SelectSize = () => {
         value={sizeCell}
         onChange={(e) => handlerSelect(e)}
       >
-        <option value="70">70</option>
-        <option value="60">60</option>
-        <option value="50">50</option>
-        <option value="40">40</option>
-        <option value="30">30</option>
-        <option value="20">20</option>
+        {valuesSize.map((item) => (
+          <option key={`size-${item.text}`} value={item.value}>{item.text}</option>
+        ))}
       </select>
     </div>
   );
