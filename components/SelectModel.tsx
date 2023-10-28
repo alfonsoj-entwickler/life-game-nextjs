@@ -1,5 +1,6 @@
 import { ChangeEvent } from "react";
 import { useActionConfig } from "@/context/useActionConfig";
+import { valuesModels } from "@/helpers/valuesSelects";
 
 const SelectModel = () => {
   const { modelCell, setModelCells } = useActionConfig();
@@ -17,15 +18,11 @@ const SelectModel = () => {
         value={modelCell}
         onChange={(e) => handlerSelect(e)}
       >
-        <option value="random">Random</option>
-        <option value="1">Cell 1</option>
-        <option value="2">Cell 2</option>
-        <option value="3">Cell 3</option>
-        <option value="4">Cell 4</option>
-        <option value="5">Cell 5</option>
-        <option value="6">Cell 6</option>
-        <option value="7">Cell 7</option>
-        <option value="8">Cell 8</option>
+        {valuesModels.map((item) => (
+          <option key={`model-${item.value}`} value={item.value}>
+            {item.text}
+          </option>
+        ))}
       </select>
     </div>
   );

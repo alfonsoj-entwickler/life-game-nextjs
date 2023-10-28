@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 import { useActionConfig } from "@/context/useActionConfig";
 import useWindowSize from "@/hooks/useWindowSize";
-import {valuesSize} from "@/helpers/valuesSelects"
+import {valuesSize} from "@/helpers/valuesSelects";
 
 const SelectSize = () => {
   const { sizeCell, setSizeCells, resetCells } = useActionConfig();
