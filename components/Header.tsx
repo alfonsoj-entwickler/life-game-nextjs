@@ -1,4 +1,5 @@
 "use client";
+import CountUp from "./CountUp";
 import { useActionConfig } from "@/context/useActionConfig";
 import { useLayerConfig } from "@/context/useLayerConfig";
 
@@ -15,7 +16,7 @@ const Header = () => {
         <h1 className="text-4xl">Life-Game</h1>
       </div>
       <div className="w-1/3 text-center">
-        <p className="text-2xl">{stateWorld ? "Working ..." : "Pause"}</p>
+        <CountUp />
       </div>
       <div className="w-1/3 flex flex-nowrap justify-end items-center space-x-4 text-2xl">
         <p className="flex">
