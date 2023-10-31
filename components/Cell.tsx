@@ -19,9 +19,12 @@ const Cell = ({ item }: Props) => {
 
   return (
     <div
-      className={`model-${sizeCell} cursor-pointer bg-transparent transition hover:bg-white/20`}
+      className={`relative model-${sizeCell} cursor-pointer bg-transparent transition hover:bg-white/20`}
       onClick={(e) => handleClick(e)}
     >
+      <span className="hidden absolute inset-0 -z-10 flex justify-center items-center text-sx text-slate-100/40">
+        {item.index}
+      </span>
       <div className={`${item.active ? "block" : "hidden"}`}>
         <div className={`${stateAnimations ? rotateModel : "rotate-none"}`}>
           <Image
