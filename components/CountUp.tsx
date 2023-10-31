@@ -12,7 +12,6 @@ const CountUp = () => {
     miliseconds: 0,
     interval: 250,
   });
-  const [useIntervalId, setIntervalId] = useState<number | undefined>();
   const [useTime, setTime] = useState<string>("00 : 00 : 00");
   const { stateWorld } = useLayerConfig();
 
@@ -38,26 +37,30 @@ const CountUp = () => {
         minutes = 0;
         hours++;
       }
+
       setTime(
         `${formatNumberDigits(hours)} : ${formatNumberDigits(
           minutes
         )} : ${formatNumberDigits(seconds)}`
       );
+
+      setCountUp({
+        ...useCountUp,
+        id: loopTime,
+        hours,
+        minutes,
+        seconds,
+        miliseconds,
+      });
     }, interval);
-    return loopTime;
   };
 
   useEffect(() => {
-    if(stateWorld) {
-      setIntervalId(countUp())
-      console.log('Iniciar TimeUp', useIntervalId)
+    if (stateWorld) {
+      countUp();
+    } else {
+      clearInterval(useCountUp.id);
     }
-    else {
-      console.log('Stop TimeUp', useIntervalId)
-      clearInterval(useIntervalId)
-      
-    }
-   
   }, [stateWorld]);
 
   return <p className="text-2xl">{useTime}</p>;
