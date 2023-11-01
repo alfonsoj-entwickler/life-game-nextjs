@@ -10,7 +10,7 @@ type Props = {
 
 const Cell = ({ item }: Props) => {
   const { sizeCell, updateActiveCell } = useActionConfig();
-  const { stateAnimations } = useLayerConfig();
+  const { stateAnimations, stateIndex } = useLayerConfig();
   const rotateModel = `rotate-${item.rotate}`;
 
   const handleClick = (e: MouseEvent) => {
@@ -18,14 +18,21 @@ const Cell = ({ item }: Props) => {
   };
 
   return (
-    <div
+    <button
+      type="button"
       className={`relative model-${sizeCell} cursor-pointer bg-transparent transition hover:bg-white/20`}
       onClick={(e) => handleClick(e)}
+      tabIndex={item.index}
+      aria-label={`cell ${item.index} model ${item.model}`}
     >
-      <span className="hidden absolute inset-0 -z-10 flex justify-center items-center text-sx text-slate-100/40">
+      <span
+        className={`${
+          stateIndex ? "flex" : "hidden"
+        } absolute inset-0 -z-10 justify-center items-center text-xs text-slate-100/60`}
+      >
         {item.index}
       </span>
-      <div className={`${item.active ? "block" : "hidden"}`}>
+      <div className={`overflow-hidden ${item.active ? "block" : "hidden"}`}>
         <div className={`${stateAnimations ? rotateModel : "rotate-none"}`}>
           <Image
             src={`assets/images/cell-model-${item.model}.svg`}
@@ -35,7 +42,7 @@ const Cell = ({ item }: Props) => {
           />
         </div>
       </div>
-    </div>
+    </button>
   );
 };
 

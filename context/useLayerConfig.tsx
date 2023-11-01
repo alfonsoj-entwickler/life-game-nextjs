@@ -9,6 +9,8 @@ interface LayerState {
   setLoading: () => void;
   stateWorld: boolean;
   setWorld: (status: boolean) => void;
+  stateIndex: boolean;
+  setIndex: (status: boolean) => void;
 }
 
 export const useLayerConfig = create<LayerState>()((set) => ({
@@ -16,9 +18,11 @@ export const useLayerConfig = create<LayerState>()((set) => ({
   stateLayer: false,
   stateLoading: false,
   stateWorld: false,
+  stateIndex: false,
   setAnimation: (status) =>
     set((state) => ({ stateAnimations: status })),
   setLayer: (status) => set((state) => ({ stateLayer: status })),
   setLoading: () => set((state) => ({ stateLoading: !state.stateLoading })),
   setWorld: (status) => set((state) => ({ stateWorld: status })),
+  setIndex: (status) => set((state) => ({ stateIndex: status })),
 }));
