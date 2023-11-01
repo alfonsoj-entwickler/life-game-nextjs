@@ -13,9 +13,11 @@ const Footer = () => {
     stateAnimations,
     stateLayer,
     stateWorld,
+    stateIndex,
     setAnimation,
     setLayer,
     setWorld,
+    setIndex,
   } = useLayerConfig();
   const windowSize = useWindowSize();
 
@@ -92,6 +94,12 @@ const Footer = () => {
           )}
         </div>
         <div className={`flex w-2/5 justify-end space-x-6 ${stateWorld && "pointer-events-none"}`}>
+          <Switch
+            onText="On Index"
+            offText="Off Index"
+            statusChecked={stateIndex}
+            handlerChange={setIndex}
+          />
           <Switch
             onText="On Animation"
             offText="Off Animation"
