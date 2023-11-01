@@ -56,7 +56,7 @@ export const useActionConfig = create<CellState>()((set) => ({
           })
           .map((cell, index) => ({
             ...cell,
-            index,
+            index: index + 1,
             id: uuid(),
             model: `${modelCell === "random" ? randomModelCell(8) : modelCell}`,
             rotate: `${randomModelCell(8)}`,
