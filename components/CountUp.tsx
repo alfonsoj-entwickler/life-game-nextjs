@@ -4,7 +4,7 @@ import { formatNumberDigits } from "@/helpers/formatNumberDigits";
 import { TimeType } from "@/types/Time";
 
 const CountUp = () => {
-  const [useCountUp, setCountUp] = useState<TimeType>({
+  const [timer, setTimer] = useState<TimeType>({
     id: 0,
     hours: 0,
     minutes: 0,
@@ -12,15 +12,15 @@ const CountUp = () => {
     miliseconds: 0,
     interval: 250,
   });
-  const [useTime, setTime] = useState<string>("00 : 00 : 00");
+  const [message, setMessage] = useState<string>("00 : 00 : 00");
   const { stateWorld } = useLayerConfig();
 
   const countUp = () => {
-    let hours = useCountUp.hours,
-      minutes = useCountUp.minutes,
-      seconds = useCountUp.seconds,
-      miliseconds = useCountUp.miliseconds,
-      interval = useCountUp.interval;
+    let hours = timer.hours,
+      minutes = timer.minutes,
+      seconds = timer.seconds,
+      miliseconds = timer.miliseconds,
+      interval = timer.interval;
 
     const loopTime = setInterval(() => {
       if (miliseconds + interval > 999) {
@@ -38,15 +38,15 @@ const CountUp = () => {
         hours++;
       }
 
-      setTime(
+      setMessage(
         `${formatNumberDigits(hours)} : ${formatNumberDigits(
           minutes
         )} : ${formatNumberDigits(seconds)}`
       );
 
-      setCountUp({
-        ...useCountUp,
-        id: loopTime,
+      setTimer({
+        ...timer,
+        id: Number(loopTime),
         hours,
         minutes,
         seconds,
@@ -59,11 +59,11 @@ const CountUp = () => {
     if (stateWorld) {
       countUp();
     } else {
-      clearInterval(useCountUp.id);
+      clearInterval(timer.id);
     }
   }, [stateWorld]);
 
-  return <p className="text-2xl">{useTime}</p>;
+  return <p className="text-2xl">{message}</p>;
 };
 
 export default CountUp;
