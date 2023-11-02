@@ -1,7 +1,9 @@
 export type Cell = {
-    id: string;
-    index: number;
-    active: boolean; 
-    model?: string;
-    rotate?: string;
-}
+  id: string;
+  index: number;
+  x: number;
+  y: number;
+  active: boolean;
+  model?: string;
+  rotate?: string;
+};
