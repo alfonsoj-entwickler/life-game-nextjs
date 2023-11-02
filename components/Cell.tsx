@@ -28,9 +28,19 @@ const Cell = ({ item }: Props) => {
       <span
         className={`${
           stateIndex ? "flex" : "hidden"
-        } absolute inset-0 -z-10 justify-center items-center text-xs text-slate-100/60`}
+        } flex-col absolute inset-0 -z-10 justify-center items-center`}
       >
-        {item.index}
+        <span
+          className={`${
+            sizeCell == 20 ? "hidden" : "inline"
+          } text-sm text-slate-100/60`}
+        >
+          {item.index}
+        </span>
+        <span className="hidden text-xs text-green-100/60">
+          ({item.x},{item.y})
+        </span>
+        <span className="absolute top-0 left-0 w-full h-full border border-solid border-slate-500/30"></span>
       </span>
       <div className={`overflow-hidden ${item.active ? "block" : "hidden"}`}>
         <div className={`${stateAnimations ? rotateModel : "rotate-none"}`}>
