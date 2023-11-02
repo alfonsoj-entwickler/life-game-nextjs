@@ -95,8 +95,8 @@ const Footer = () => {
         </div>
         <div className={`flex w-2/5 justify-end space-x-6 ${stateWorld && "pointer-events-none"}`}>
           <Switch
-            onText="On Index"
-            offText="Off Index"
+            onText="On Map"
+            offText="Off Map"
             statusChecked={stateIndex}
             handlerChange={setIndex}
           />
