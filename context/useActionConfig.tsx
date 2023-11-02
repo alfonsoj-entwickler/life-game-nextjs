@@ -44,24 +44,41 @@ export const useActionConfig = create<CellState>()((set) => ({
   resetCells: (width, height) =>
     set(({ sizeCell, modelCell }) => {
       if (width && height) {
+        let row = 1,
+          column = 1;
         const rowsCell = Math.floor((height - 128) / sizeCell);
         const columnsCell = Math.floor(width / sizeCell);
         // (window.height - (header.height + footer.height))
-        const sizeArray =
-        rowsCell * columnsCell;
+        const sizeArray = rowsCell * columnsCell;
 
         const cellsArray = Array.from(Array(sizeArray))
           .fill({
             active: false,
           })
-          .map((cell, index) => ({
-            ...cell,
-            index: index + 1,
-            id: uuid(),
-            model: `${modelCell === "random" ? randomModelCell(8) : modelCell}`,
-            rotate: `${randomModelCell(8)}`,
-          }));
-        return { cells: cellsArray, lifeCells: 0, dieCells: 0, totalCells: 0, rows: rowsCell, columns: columnsCell };
+          .map((cell, index) => {
+            const new_cell = {
+              ...cell,
+              index: index + 1,
+              x: row,
+              y: column,
+              id: uuid(),
+              model: `${
+                modelCell === "random" ? randomModelCell(8) : modelCell
+              }`,
+              rotate: `${randomModelCell(8)}`,
+            };
+            row = ((index+1) % columnsCell) === 0 ? row + 1 : row;
+            column = ((index+1) % columnsCell) === 0 ? 1 : column + 1;
+            return new_cell;
+          });
+        return {
+          cells: cellsArray,
+          lifeCells: 0,
+          dieCells: 0,
+          totalCells: 0,
+          rows: rowsCell,
+          columns: columnsCell,
+        };
       }
       return { cells: null, lifeCells: 0, dieCells: 0, totalCells: 0 };
     }),
