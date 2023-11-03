@@ -1,65 +1,59 @@
 import { useState, useEffect } from "react";
 import { useLayerConfig } from "@/context/useLayerConfig";
 import { formatNumberDigits } from "@/helpers/formatNumberDigits";
-import { TimeType } from "@/types/Time";
+import { IntervalType } from "@/types/Time";
+import { stepTimer } from "@/helpers/stepTimer";
 
 const CountUp = () => {
-  const [timer, setTimer] = useState<TimeType>({
+  const [clock, setClock] = useState<IntervalType>({
     id: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-    miliseconds: 0,
-    interval: 250,
+    time: {
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+      miliseconds: 0,
+      interval: 250,
+    },
   });
   const [message, setMessage] = useState<string>("00 : 00 : 00");
   const { stateWorld } = useLayerConfig();
 
   const countUp = () => {
-    let hours = timer.hours,
-      minutes = timer.minutes,
-      seconds = timer.seconds,
-      miliseconds = timer.miliseconds,
-      interval = timer.interval;
+    let my_counter = {
+      hours: clock.time.hours,
+      minutes: clock.time.minutes,
+      seconds: clock.time.seconds,
+      miliseconds: clock.time.miliseconds,
+      interval: clock.time.interval,
+    };
 
     const loopTime = setInterval(() => {
-      if (miliseconds + interval > 999) {
-        miliseconds = 0;
-        seconds++;
-      } else {
-        miliseconds = miliseconds + interval;
-      }
-      if (seconds > 59) {
-        seconds = 0;
-        minutes++;
-      }
-      if (minutes > 59) {
-        minutes = 0;
-        hours++;
-      }
+      stepTimer(my_counter);
 
       setMessage(
-        `${formatNumberDigits(hours)} : ${formatNumberDigits(
-          minutes
-        )} : ${formatNumberDigits(seconds)}`
+        `${formatNumberDigits(my_counter.hours)} : ${formatNumberDigits(
+          my_counter.minutes
+        )} : ${formatNumberDigits(my_counter.seconds)}`
       );
 
-      setTimer({
-        ...timer,
+      setClock({
         id: Number(loopTime),
-        hours,
-        minutes,
-        seconds,
-        miliseconds,
+        time: {
+          ...my_counter,
+          hours: my_counter.hours,
+          minutes: my_counter.minutes,
+          seconds: my_counter.seconds,
+          miliseconds: my_counter.miliseconds,
+        },
       });
-    }, interval);
+    }, my_counter.interval);
   };
 
   useEffect(() => {
     if (stateWorld) {
       countUp();
     } else {
-      clearInterval(timer.id);
+      clearInterval(clock.id);
     }
   }, [stateWorld]);
 
