@@ -1,40 +1,23 @@
 import { useState, useEffect } from "react";
 import { useLayerConfig } from "@/context/useLayerConfig";
 import { formatNumberDigits } from "@/helpers/formatNumberDigits";
-import { IntervalType } from "@/types/Time";
 import { stepTimer } from "@/helpers/stepTimer";
 
 const CountUp = () => {
-  const [clock, setClock] = useState<IntervalType>({
-    id: 0,
-    time: {
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
-      miliseconds: 0,
-      interval: 250,
-    },
-  });
   const [message, setMessage] = useState<string>("00 : 00 : 00");
-  const { stateWorld } = useLayerConfig();
+  const { stateWorld, stateClock, setClock } = useLayerConfig();
 
   const countUp = () => {
     let my_counter = {
-      hours: clock.time.hours,
-      minutes: clock.time.minutes,
-      seconds: clock.time.seconds,
-      miliseconds: clock.time.miliseconds,
-      interval: clock.time.interval,
+      hours: stateClock.time.hours,
+      minutes: stateClock.time.minutes,
+      seconds: stateClock.time.seconds,
+      miliseconds: stateClock.time.miliseconds,
+      interval: stateClock.time.interval,
     };
 
     const loopTime = setInterval(() => {
       stepTimer(my_counter);
-
-      setMessage(
-        `${formatNumberDigits(my_counter.hours)} : ${formatNumberDigits(
-          my_counter.minutes
-        )} : ${formatNumberDigits(my_counter.seconds)}`
-      );
 
       setClock({
         id: Number(loopTime),
@@ -53,9 +36,17 @@ const CountUp = () => {
     if (stateWorld) {
       countUp();
     } else {
-      clearInterval(clock.id);
+      clearInterval(stateClock.id);
     }
   }, [stateWorld]);
+
+  useEffect(() => {
+    setMessage(
+      `${formatNumberDigits(stateClock.time.hours)} : ${formatNumberDigits(
+        stateClock.time.minutes
+      )} : ${formatNumberDigits(stateClock.time.seconds)}`
+    );
+  }, [stateClock]);
 
   return <p className="text-2xl">{message}</p>;
 };
