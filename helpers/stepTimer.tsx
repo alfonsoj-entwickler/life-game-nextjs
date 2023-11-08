@@ -8,7 +8,7 @@ export const stepTimer = (step: TimeType) => {
   }
   if (step.seconds > 59) {
     step.seconds = 0;
-    step.minutes = step.minutes++;
+    step.minutes = step.minutes + 1;
   }
   if (step.minutes > 59) {
     step.minutes = 0;
