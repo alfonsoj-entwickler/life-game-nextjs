@@ -14,7 +14,7 @@ const Cell = ({ item }: Props) => {
   const rotateModel = `rotate-${item.rotate}`;
 
   const handleClick = (e: MouseEvent) => {
-    updateActiveCell(item.id);
+    updateActiveCell(item.index);
   };
 
   return (

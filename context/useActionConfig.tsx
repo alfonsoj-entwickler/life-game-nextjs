@@ -18,7 +18,7 @@ interface CellState {
   setModelCells: (model: string) => void;
   setCells: (cells: Cells) => void;
   resetCells: (width: number | undefined, height: number | undefined) => void;
-  updateActiveCell: (id: string) => void;
+  updateActiveCell: (index: number) => void;
 }
 
 export const useActionConfig = create<CellState>()((set) => ({
@@ -67,8 +67,8 @@ export const useActionConfig = create<CellState>()((set) => ({
               }`,
               rotate: `${randomModelCell(8)}`,
             };
-            row = ((index+1) % columnsCell) === 0 ? row + 1 : row;
-            column = ((index+1) % columnsCell) === 0 ? 1 : column + 1;
+            row = (index + 1) % columnsCell === 0 ? row + 1 : row;
+            column = (index + 1) % columnsCell === 0 ? 1 : column + 1;
             return new_cell;
           });
         return {
@@ -84,20 +84,13 @@ export const useActionConfig = create<CellState>()((set) => ({
     }),
   // Searches for the todo in the todos array by id, then
   // negates the current checked value and updates the state.
-  updateActiveCell: (id) =>
+  updateActiveCell: (index) =>
     set(({ cells, lifeCells }) => {
       let total = lifeCells;
-      const updatedCells = cells!.map((cell) => {
-        if (cell.id === id) {
-          cell.active ? total-- : total++;
-          return {
-            ...cell,
-            active: !cell.active,
-          };
-        }
-        return cell;
-      });
-
-      return { cells: updatedCells, lifeCells: total, totalCells: total };
+      if (cells) {
+        cells[index - 1].active = !cells[index - 1].active;
+        cells[index - 1].active ? total++ : total--;
+      }
+      return { lifeCells: total, totalCells: total };
     }),
 }));
