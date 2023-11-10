@@ -11,3 +11,5 @@ The game is played on an **infinite grid of square cells**, and its evolution is
   - **Overcrowding**: if a cell is alive at time t + 1 and 4 or more of its neighbors are also alive at time t, the cell will be dead at time t + 1.
   - **Exposure**: if a live cell at time t has only 1 live neighbor or none, it will be dead at time t + 1.
 - **Survival**: a cell survives from time t to time t + 1 if and only if 2 or 3 of its neighbors are alive at time t.
+
+![banner](/public/assets/images/capture_cells.jpg)
