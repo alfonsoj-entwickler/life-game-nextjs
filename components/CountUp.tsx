@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import { useLayerConfig } from "@/context/useLayerConfig";
+import { useActionConfig } from "@/context/useActionConfig";
 import { formatNumberDigits } from "@/helpers/formatNumberDigits";
 import { stepTimer } from "@/helpers/stepTimer";
+import randomModelCell from "@/helpers/randomModelCell";
 
 const CountUp = () => {
   const [message, setMessage] = useState<string>("00 : 00 : 00");
   const { stateWorld, stateClock, setClock } = useLayerConfig();
+  const { rows, columns, updateActiveCell } = useActionConfig();
 
   const countUp = () => {
     let my_counter = {
@@ -18,7 +21,7 @@ const CountUp = () => {
 
     const loopTime = setInterval(() => {
       stepTimer(my_counter);
-
+      updateActiveCell(randomModelCell(rows * columns - 1));
       setClock({
         id: Number(loopTime),
         time: {
