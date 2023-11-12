@@ -13,12 +13,12 @@ const SelectSize = () => {
     resetCells(windowSize.width, windowSize.height);
   };
   return (
-    <div className="flex space-x-2 text-lg outline-none">
-      <label htmlFor="size-cell">Choose a size:</label>
+    <div className="flex flex-col items-start justify-start outline-none">
+      <label className="text-base" htmlFor="size-cell">Choose a size:</label>
       <select
         name="size"
         id="size-cell"
-        className="outline-none"
+        className="p-1 outline-none"
         value={sizeCell}
         onChange={(e) => handlerSelect(e)}
       >

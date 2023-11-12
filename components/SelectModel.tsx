@@ -9,12 +9,12 @@ const SelectModel = () => {
     setModelCells(e.target.value);
   };
   return (
-    <div className="flex space-x-2 text-lg">
-      <label htmlFor="model-cell">Choose a model:</label>
+    <div className="flex flex-col items-start justify-start outline-none">
+      <label className="text-base" htmlFor="model-cell">Choose a model:</label>
       <select
         name="models"
         id="model-cell"
-        className="outline-none"
+        className="p-1 outline-none"
         value={modelCell}
         onChange={(e) => handlerSelect(e)}
       >
