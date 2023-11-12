@@ -26,7 +26,7 @@ const Footer = () => {
     <footer className="w-screen h-[4rem] text-gray-900 bg-[#23d5ab] z-10">
       <div className="h-full flex items-center space-x-6 px-10">
         <div
-          className={`flex w-2/5 space-x-6 ${
+          className={`flex items-center w-2/5 space-x-6 ${
             stateWorld && "pointer-events-none"
           }`}
         >
