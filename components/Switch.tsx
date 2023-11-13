@@ -1,7 +1,6 @@
 type Props = {
   onText: string;
   offText: string;
-  color?: string;
   statusChecked: boolean;
   handlerChange: (status: boolean) => void;
 };
@@ -9,7 +8,6 @@ type Props = {
 const Switch = ({
   onText,
   offText,
-  color = "red",
   statusChecked,
   handlerChange,
 }: Props) => {
