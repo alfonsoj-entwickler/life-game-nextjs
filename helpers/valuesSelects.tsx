@@ -1,14 +1,14 @@
-interface SelectSize {
+export interface SelectSize {
   value: number;
   text: string;
 }
 
-interface SelectModel {
+export interface SelectModel {
   value: string;
   text: string;
 }
 
-export const valuesSize = [
+export const valuesSize: SelectSize[] = [
   {
     value: 70,
     text: "70",
@@ -35,7 +35,7 @@ export const valuesSize = [
   },
 ];
 
-export const valuesModels = [
+export const valuesModels: SelectModel[] = [
   {
     value: "random",
     text: "random",
