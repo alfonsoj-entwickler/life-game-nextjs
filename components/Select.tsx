@@ -4,7 +4,7 @@ type Props = {
   name: string;
   id: string;
   title: string;
-  value: string;
+  value: string | number;
   handlerChange: (selectEvent: any) => void;
   options: SelectSize[] | SelectModel[];
 };
