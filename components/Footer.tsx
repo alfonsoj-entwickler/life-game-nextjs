@@ -2,13 +2,16 @@
 import Button from "./Button";
 import Switch from "./Switch";
 import SelectModel from "./SelectModel";
+import { ChangeEvent } from "react";
 import SelectSize from "./SelectSize";
+import Select from "./Select";
 import useWindowSize from "@/hooks/useWindowSize";
 import { useActionConfig } from "@/context/useActionConfig";
 import { useLayerConfig } from "@/context/useLayerConfig";
+import { valuesModels } from "@/helpers/valuesSelects";
 
 const Footer = () => {
-  const { resetCells } = useActionConfig();
+  const { modelCell, setModelCells, resetCells } = useActionConfig();
   const {
     stateAnimations,
     stateLayer,
@@ -20,6 +23,9 @@ const Footer = () => {
     setIndex,
     resetClock,
   } = useLayerConfig();
+  const handlerSelect = (e: ChangeEvent<HTMLSelectElement>) => {
+    setModelCells(e.target.value);
+  };
   const windowSize = useWindowSize();
 
   return (
@@ -30,8 +36,16 @@ const Footer = () => {
             stateWorld && "pointer-events-none"
           }`}
         >
-          <SelectSize />
-          <SelectModel />
+          <SelectSize /> 
+          <Select
+            id={"model-cell"}
+            name={"models"}
+            title="Choose a model:"
+            value={modelCell}
+            options={valuesModels}
+            handlerChange={handlerSelect}
+          />
+          
           <Button
             text="Reset"
             onClick={(e) => {
