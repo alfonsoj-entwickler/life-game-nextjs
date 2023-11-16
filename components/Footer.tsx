@@ -1,17 +1,15 @@
 "use client";
+import { ChangeEvent } from "react";
 import Button from "./Button";
 import Switch from "./Switch";
-import SelectModel from "./SelectModel";
-import { ChangeEvent } from "react";
-import SelectSize from "./SelectSize";
 import Select from "./Select";
 import useWindowSize from "@/hooks/useWindowSize";
 import { useActionConfig } from "@/context/useActionConfig";
 import { useLayerConfig } from "@/context/useLayerConfig";
-import { valuesModels } from "@/helpers/valuesSelects";
+import { valuesModels, valuesSize } from "@/helpers/valuesSelects";
 
 const Footer = () => {
-  const { modelCell, setModelCells, resetCells } = useActionConfig();
+  const { sizeCell, setSizeCells, modelCell, setModelCells, resetCells } = useActionConfig();
   const {
     stateAnimations,
     stateLayer,
@@ -23,10 +21,18 @@ const Footer = () => {
     setIndex,
     resetClock,
   } = useLayerConfig();
-  const handlerSelect = (e: ChangeEvent<HTMLSelectElement>) => {
+
+  const windowSize = useWindowSize();
+
+  const handlerSelectModel = (e: ChangeEvent<HTMLSelectElement>) => {
     setModelCells(e.target.value);
   };
-  const windowSize = useWindowSize();
+  const handlerSelectSize = (e: ChangeEvent<HTMLSelectElement>) => {
+    setSizeCells(Number(e.target.value));
+    //ToDo: delete reset layer and update cells
+    resetCells(windowSize.width, windowSize.height);
+  };
+
 
   return (
     <footer className="w-screen h-[4rem] text-gray-900 bg-[#23d5ab] z-10">
@@ -36,14 +42,21 @@ const Footer = () => {
             stateWorld && "pointer-events-none"
           }`}
         >
-          <SelectSize /> 
+          <Select
+            id={"size-cell"}
+            name={"size"}
+            title="Choose a size:"
+            value={sizeCell}
+            options={valuesSize}
+            handlerChange={handlerSelectSize}
+          />
           <Select
             id={"model-cell"}
             name={"models"}
             title="Choose a model:"
             value={modelCell}
             options={valuesModels}
-            handlerChange={handlerSelect}
+            handlerChange={handlerSelectModel}
           />
           
           <Button
