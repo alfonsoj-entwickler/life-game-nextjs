@@ -85,12 +85,13 @@ export const useActionConfig = create<CellState>()((set) => ({
   // Searches for the todo in the todos array by id, then
   // negates the current checked value and updates the state.
   updateActiveCell: (index) =>
-    set(({ cells, lifeCells }) => {
-      let total = lifeCells;
+    set(({ cells, lifeCells, dieCells, totalCells }) => {
+      let currentTotal = totalCells, currentDie = dieCells, currentLife = lifeCells;
       if (cells) {
         cells[index - 1].active = !cells[index - 1].active;
-        cells[index - 1].active ? total++ : total--;
+        cells[index - 1].active ? currentLife++ : currentDie++;
+        currentTotal++;
       }
-      return { lifeCells: total, totalCells: total };
+      return { lifeCells: currentLife, dieCells: currentDie, totalCells: currentTotal };
     }),
 }));
