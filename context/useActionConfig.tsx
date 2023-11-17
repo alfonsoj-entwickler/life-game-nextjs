@@ -86,12 +86,18 @@ export const useActionConfig = create<CellState>()((set) => ({
   // negates the current checked value and updates the state.
   updateActiveCell: (index) =>
     set(({ cells, lifeCells, dieCells, totalCells }) => {
-      let currentTotal = totalCells, currentDie = dieCells, currentLife = lifeCells;
+      let currentTotal = totalCells,
+        currentDie = dieCells,
+        currentLife = lifeCells;
       if (cells) {
         cells[index - 1].active = !cells[index - 1].active;
         cells[index - 1].active ? currentLife++ : currentDie++;
         currentTotal++;
       }
-      return { lifeCells: currentLife, dieCells: currentDie, totalCells: currentTotal };
+      return {
+        lifeCells: currentLife,
+        dieCells: currentDie,
+        totalCells: currentTotal,
+      };
     }),
 }));
