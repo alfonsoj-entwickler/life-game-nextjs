@@ -6,4 +6,5 @@ export type Cell = {
   active: boolean;
   model?: string;
   rotate?: string;
+  neighbours: number[];
 };

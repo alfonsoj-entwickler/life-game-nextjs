@@ -67,6 +67,7 @@ export const useActionConfig = create<CellState>()((set) => ({
                 modelCell === "random" ? randomModelCell(8) : modelCell
               }`,
               rotate: `${randomModelCell(8)}`,
+              neighbours: Array.from(Array(8).keys())
             };
             row = i % columnsCell === 0 ? row + 1 : row;
             column = i % columnsCell === 0 ? 1 : column + 1;
@@ -79,6 +80,7 @@ export const useActionConfig = create<CellState>()((set) => ({
           totalCells: 0,
           rows: rowsCell,
           columns: columnsCell,
+          neighbours: Array.from(Array(8).keys())
         };
       }
       return { cells: null, lifeCells: 0, dieCells: 0, totalCells: 0 };
