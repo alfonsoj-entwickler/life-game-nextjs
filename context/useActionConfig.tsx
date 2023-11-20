@@ -56,9 +56,10 @@ export const useActionConfig = create<CellState>()((set) => ({
             active: false,
           })
           .map((cell, index) => {
+            let i = index + 1;
             const new_cell = {
               ...cell,
-              index: index + 1,
+              index: i,
               x: row,
               y: column,
               id: uuid(),
@@ -67,8 +68,8 @@ export const useActionConfig = create<CellState>()((set) => ({
               }`,
               rotate: `${randomModelCell(8)}`,
             };
-            row = (index + 1) % columnsCell === 0 ? row + 1 : row;
-            column = (index + 1) % columnsCell === 0 ? 1 : column + 1;
+            row = i % columnsCell === 0 ? row + 1 : row;
+            column = i % columnsCell === 0 ? 1 : column + 1;
             return new_cell;
           });
         return {
