@@ -2,6 +2,7 @@ import { v4 as uuid } from "uuid";
 import { create } from "zustand";
 import { Cell } from "@/types/Cell";
 import randomModelCell from "@/helpers/randomModelCell";
+import { getNeighboursCells } from "@/helpers/neighboursCells";
 
 export type Cells = Cell[] | null;
 
@@ -67,7 +68,7 @@ export const useActionConfig = create<CellState>()((set) => ({
                 modelCell === "random" ? randomModelCell(8) : modelCell
               }`,
               rotate: `${randomModelCell(8)}`,
-              neighbours: Array.from(Array(8).keys())
+              neighbours: getNeighboursCells(rowsCell,columnsCell,i, row, column)
             };
             row = i % columnsCell === 0 ? row + 1 : row;
             column = i % columnsCell === 0 ? 1 : column + 1;
