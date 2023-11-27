@@ -6,13 +6,13 @@ import { useActionConfig } from "@/context/useActionConfig";
 import { useLayerConfig } from "@/context/useLayerConfig";
 
 const Layer = () => {
-  const { cells, resetCells } = useActionConfig();
+  const { cells, loading, resetCells } = useActionConfig();
   const { stateLayer } = useLayerConfig();
   const windowSize = useWindowSize();
 
   useEffect(() => {
     resetCells(windowSize.width, windowSize.height);
-  }, [windowSize]);
+  }, [resetCells, windowSize.width, windowSize.height]);
 
   return (
     <main
@@ -20,9 +20,17 @@ const Layer = () => {
         stateLayer && "pointer-events-none"
       }`}
     >
-      {cells?.map((item) => (
-        <Cell key={`cell-${item.id}`} item={item} />
-      ))}
+      {loading ? (
+        <div className="flex justify-center items-center">
+          <p className="text-6xl">Loading ...</p>
+        </div>
+      ) : (
+        <>
+          {cells?.map((item) => (
+            <Cell key={`cell-${item.id}`} item={item} />
+          ))}
+        </>
+      )}
     </main>
   );
 };

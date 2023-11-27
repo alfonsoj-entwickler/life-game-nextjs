@@ -15,11 +15,13 @@ interface CellState {
   totalCells: number;
   rows: number;
   columns: number;
+  loading: boolean;
   setSizeCells: (size: number) => void;
   setModelCells: (model: string) => void;
   setCells: (cells: Cells) => void;
   resetCells: (width: number | undefined, height: number | undefined) => void;
   updateActiveCell: (index: number) => void;
+  setLoading: (status: boolean) => void;
 }
 
 export const useActionConfig = create<CellState>()((set) => ({
@@ -31,6 +33,7 @@ export const useActionConfig = create<CellState>()((set) => ({
   totalCells: 0,
   rows: 0,
   columns: 0,
+  loading: false,
   setSizeCells: (size) => set(() => ({ sizeCell: size })),
   setModelCells: (model) =>
     set(({ cells }) => {
@@ -43,10 +46,11 @@ export const useActionConfig = create<CellState>()((set) => ({
   setCells: (cells) => set(() => ({ cells })),
   // Creates  Cells object and appends it to the current todos state.
   resetCells: (width, height) =>
-    set(({ sizeCell, modelCell }) => {
+    set(({ sizeCell, modelCell, setLoading }) => {
       if (width && height) {
         let row = 1,
           column = 1;
+        setLoading(true);
         const rowsCell = Math.floor((height - 128) / sizeCell);
         const columnsCell = Math.floor(width / sizeCell);
         // (window.height - (header.height + footer.height))
@@ -68,12 +72,19 @@ export const useActionConfig = create<CellState>()((set) => ({
                 modelCell === "random" ? randomModelCell(8) : modelCell
               }`,
               rotate: `${randomModelCell(8)}`,
-              neighbours: getNeighboursCells(rowsCell,columnsCell,i, row, column)
+              neighbours: getNeighboursCells(
+                rowsCell,
+                columnsCell,
+                i,
+                row,
+                column
+              ),
             };
             row = i % columnsCell === 0 ? row + 1 : row;
             column = i % columnsCell === 0 ? 1 : column + 1;
             return new_cell;
           });
+        setLoading(false);
         return {
           cells: cellsArray,
           lifeCells: 0,
@@ -81,7 +92,6 @@ export const useActionConfig = create<CellState>()((set) => ({
           totalCells: 0,
           rows: rowsCell,
           columns: columnsCell,
-          neighbours: Array.from(Array(8).keys())
         };
       }
       return { cells: null, lifeCells: 0, dieCells: 0, totalCells: 0 };
@@ -104,4 +114,5 @@ export const useActionConfig = create<CellState>()((set) => ({
         totalCells: currentTotal,
       };
     }),
+  setLoading: (status) => set((state) => ({ loading: status })),
 }));
