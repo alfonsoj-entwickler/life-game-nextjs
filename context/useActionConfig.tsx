@@ -3,6 +3,7 @@ import { create } from "zustand";
 import { Cell } from "@/types/Cell";
 import randomModelCell from "@/helpers/randomModelCell";
 import { getNeighboursCells } from "@/helpers/neighboursCells";
+import { deleteDieNeighbours } from "@/helpers/deleteDieNeighbours";
 
 export type Cells = Cell[] | null;
 
@@ -72,12 +73,9 @@ export const useActionConfig = create<CellState>()((set) => ({
                 modelCell === "random" ? randomModelCell(8) : modelCell
               }`,
               rotate: `${randomModelCell(8)}`,
-              neighbours: getNeighboursCells(
-                rowsCell,
-                columnsCell,
-                i,
-                row,
-                column
+              neighbours: deleteDieNeighbours(
+                getNeighboursCells(rowsCell, columnsCell, i, row, column),
+                0
               ),
             };
             row = i % columnsCell === 0 ? row + 1 : row;
