@@ -101,10 +101,12 @@ export const useActionConfig = create<CellState>()((set) => ({
       let currentTotal = totalCells,
         currentDie = dieCells,
         currentLife = lifeCells;
+      const correctIndex = index - 1;
       if (cells) {
-        cells[index - 1].active = !cells[index - 1].active;
-        cells[index - 1].active ? currentLife++ : currentDie++;
+        cells[correctIndex].active = !cells[correctIndex].active;
+        cells[correctIndex].active ? currentLife++ : currentDie++;
         currentTotal++;
+        //console.log(cells[index - 1].neighbours)
       }
       return {
         lifeCells: currentLife,
