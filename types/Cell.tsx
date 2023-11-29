@@ -8,3 +8,8 @@ export type Cell = {
   rotate?: string;
   neighbours: number[];
 };
+
+export type stateCells = {
+  index: number;
+  life: boolean;
+};
