@@ -48,7 +48,7 @@ export const getNeighboursCells = (
 };
 
 const checkTop = (position: number, columns: number, x: number ):number => {
-  return (position <= 1 || Math.ceil(position/columns) !== x - 1) ? 0 : position;
+  return (position < 1 || Math.ceil(position/columns) !== x - 1) ? 0 : position;
 }
 
 const checkBottom = ( position: number, rows: number, columns: number, x: number ):number => {
