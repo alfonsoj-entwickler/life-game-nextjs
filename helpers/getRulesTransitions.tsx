@@ -32,10 +32,10 @@ export const getRulesTransitions = (universe: Cell[]): stateCells[] => {
       initialValue
     );
     // update dead cell
-    updateCells.push({ index: cell, life: lifeOrDie(sumWithInitial) });
+    updateCells.push({ index: cell, life: sumWithInitial === 3 });
   });
 
-  console.log(updateCells, deadCells);
+  // console.log(updateCells, deadCells);
   return updateCells;
 };
 
