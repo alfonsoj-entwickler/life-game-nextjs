@@ -3,13 +3,13 @@ import { useLayerConfig } from "@/context/useLayerConfig";
 import { useActionConfig } from "@/context/useActionConfig";
 import { formatNumberDigits } from "@/helpers/formatNumberDigits";
 import { stepTimer } from "@/helpers/stepTimer";
-import randomModelCell from "@/helpers/randomModelCell";
+ 
 import { getRulesTransitions } from "@/helpers/getRulesTransitions";
 
 const CountUp = () => {
   const [message, setMessage] = useState<string>("00 : 00 : 00");
   const { stateWorld, stateClock, setClock } = useLayerConfig();
-  const { cells, rows, columns, updateActiveCell } = useActionConfig();
+  const { cells, updateActiveCell } = useActionConfig();
 
   const countUp = () => {
     let my_counter = {
@@ -22,10 +22,6 @@ const CountUp = () => {
 
     const loopTime = setInterval(() => {
       stepTimer(my_counter);
-      if(cells) {
-        getRulesTransitions(cells);
-      }
-      //updateActiveCell(randomModelCell(rows * columns - 1));
       setClock({
         id: Number(loopTime),
         time: {
@@ -54,6 +50,12 @@ const CountUp = () => {
       )} : ${formatNumberDigits(stateClock.time.seconds)}`
     );
   }, [stateClock]);
+
+  useEffect(()=> {
+    if(cells) {
+      updateActiveCell(getRulesTransitions(cells));
+    }
+  }, [stateClock.time.seconds])
 
   return <p className="text-2xl">{message}</p>;
 };
