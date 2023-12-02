@@ -1,6 +1,6 @@
 import { v4 as uuid } from "uuid";
 import { create } from "zustand";
-import { Cell } from "@/types/Cell";
+import { Cell, stateCells } from "@/types/Cell";
 import randomModelCell from "@/helpers/randomModelCell";
 import { getNeighboursCells } from "@/helpers/neighboursCells";
 import { deleteDieNeighbours } from "@/helpers/deleteDieNeighbours";
@@ -21,7 +21,7 @@ interface CellState {
   setModelCells: (model: string) => void;
   setCells: (cells: Cells) => void;
   resetCells: (width: number | undefined, height: number | undefined) => void;
-  updateActiveCell: (index: number) => void;
+  updateActiveCell: (states: stateCells[] ) => void;
   setLoading: (status: boolean) => void;
 }
 
@@ -94,19 +94,23 @@ export const useActionConfig = create<CellState>()((set) => ({
       }
       return { cells: null, lifeCells: 0, dieCells: 0, totalCells: 0 };
     }),
-  // Searches for the todo in the todos array by id, then
+  // Searches for the TODO in the todos array by id, then
   // negates the current checked value and updates the state.
-  updateActiveCell: (index) =>
+  updateActiveCell: (states) =>
     set(({ cells, lifeCells, dieCells, totalCells }) => {
       let currentTotal = totalCells,
         currentDie = dieCells,
         currentLife = lifeCells;
-      const correctIndex = index - 1;
       if (cells) {
-        cells[correctIndex].active = !cells[correctIndex].active;
-        cells[correctIndex].active ? currentLife++ : currentDie++;
-        currentTotal++;
-        //console.log(cells[index - 1].neighbours)
+        states.forEach(item => {
+          const correctIndex = item.index - 1;
+          if( cells[correctIndex].active !== item.life ) {
+            cells[correctIndex].active = item.life;
+            cells[correctIndex].active ? currentLife++ : currentDie++;
+            currentTotal++;
+            // console.log(cells[correctIndex].neighbours)
+          }
+        });
       }
       return {
         lifeCells: currentLife,
