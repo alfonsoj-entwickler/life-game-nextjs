@@ -65,35 +65,47 @@ body {
 }
 
 .rotate-1 {
-  animation: rotation 3s infinite cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: rotation 3s infinite cubic-bezier(0.175, 0.885, 0.32, 1.275) alternate;
 }
 
 .rotate-2 {
-  animation: rotation 3s infinite cubic-bezier(0.79, 0.33, 0.14, 0.53);
+  animation: rotation 3s infinite cubic-bezier(0.79, 0.33, 0.14, 0.53) alternate;
 }
 
 .rotate-3 {
-  animation: rotation 3s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation: rotation 3s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94) alternate;
 }
 
 .rotate-4 {
-  animation: rotation 3s infinite cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  animation: rotation 3s infinite cubic-bezier(0.55, 0.085, 0.68, 0.53) alternate;
 }
 
 .rotate-5 {
-  animation: rotation 3s infinite cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  animation: rotation 3s infinite cubic-bezier(0.455, 0.03, 0.515, 0.955) alternate;
 }
 
 .rotate-6 {
-  animation: rotation 3s infinite cubic-bezier(0.25, 0.085, 0.45, 0.53);
+  animation: rotation 3s infinite cubic-bezier(0.25, 0.085, 0.45, 0.53) alternate;
 }
 
 .rotate-7 {
-  animation: rotation 3s infinite cubic-bezier(0.25, 0.3,  0.14, 0.915);
+  animation: rotation 3s infinite cubic-bezier(0.25, 0.3,  0.14, 0.915) alternate;
 }
 
 .rotate-8 {
-  animation: rotation 3s infinite cubic-bezier(0.71, 0.51,  0.69, 0.342);
+  animation: rotation 3s infinite cubic-bezier(0.71, 0.51,  0.69, 0.342) alternate;
+}
+
+.opacity-animate-1 {
+  animation: opacity-animate 3s infinite cubic-bezier(0.71, 0.51,  0.69, 0.342) alternate;
+}
+
+.opacity-animate-2 {
+  animation: opacity-animate 2s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94) alternate;
+}
+
+.opacity-animate-3 {
+  animation: opacity-animate 4s infinite cubic-bezier(0.455, 0.03, 0.515, 0.955) alternate;
 }
 
 @keyframes rotation {
@@ -116,5 +128,19 @@ body {
 
   100% {
     background-position: 0 50%;
+  }
+}
+
+@keyframes opacity-animate {
+  0% {
+    opacity: 0.15;
+  }
+
+  50% {
+    opacity: 0.45;
+  }
+
+  100% {
+    opacity: 0.85;
   }
 }
