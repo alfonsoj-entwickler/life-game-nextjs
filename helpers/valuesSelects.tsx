@@ -72,4 +72,8 @@ export const valuesModels: SelectModel[] = [
     value: "8",
     text: "Cell 8",
   },
+  {
+    value: "c",
+    text: "Classic"
+  }
 ];
