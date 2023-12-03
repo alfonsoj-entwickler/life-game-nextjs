@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Cell as CellType } from "@/types/Cell";
 import { useActionConfig } from "@/context/useActionConfig";
 import { useLayerConfig } from "@/context/useLayerConfig";
+import randomModelCell from "@/helpers/randomModelCell";
 
 type Props = {
   item: CellType;
@@ -11,10 +12,10 @@ type Props = {
 const Cell = ({ item }: Props) => {
   const { sizeCell, updateActiveCell } = useActionConfig();
   const { stateAnimations, stateIndex } = useLayerConfig();
-  const rotateModel = `rotate-${item.rotate}`;
+  const rotateModel = `rotate-${item.rotate}`; 
 
   const handleClick = (e: MouseEvent) => {
-    updateActiveCell([{index: item.index, life: !item.active}]);
+    updateActiveCell([{ index: item.index, life: !item.active }]);
   };
 
   return (
@@ -40,17 +41,25 @@ const Cell = ({ item }: Props) => {
         <span className="hidden text-xs text-green-100/60">
           ({item.x},{item.y})
         </span>
-        <span className="absolute top-0 left-0 w-full h-full border border-solid border-slate-500/30"></span>
+        <span className="absolute top-0 left-0 w-full h-full border border-solid border-slate-500/30" />
       </span>
-      <div className={`overflow-hidden ${item.active ? "block" : "hidden"}`}>
-        <div className={`${stateAnimations ? rotateModel : "rotate-none"}`}>
-          <Image
-            src={`assets/images/cell-model-${item.model}.svg`}
-            alt="cell image"
-            width={sizeCell}
-            height={sizeCell}
-          />
-        </div>
+      <div
+        className={`relative overflow-hidden ${
+          item.active ? "block" : "hidden"
+        } w-full h-full`}
+      >
+        {item.model === "c" ? (
+          <div className={`absolute top-0 bottom-0 right-0 left-0 bg-black opacity-50 w-full h-full border-2 opacity-animate-${randomModelCell(3)}`} />
+        ) : (
+          <div className={`${stateAnimations ? rotateModel : "rotate-none"}`}>
+            <Image
+              src={`assets/images/cell-model-${item.model}.svg`}
+              alt="cell image"
+              width={sizeCell}
+              height={sizeCell}
+            />
+          </div>
+        )}
       </div>
     </button>
   );
