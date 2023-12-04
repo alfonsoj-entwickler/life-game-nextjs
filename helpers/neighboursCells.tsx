@@ -5,34 +5,27 @@ export const getNeighboursCells = (
   x: number,
   y: number
 ): number[] => {
-  const x_top = (x - 1) * cols,
-    x_bottom = (x + 1) * cols;
-
-  const y_right = (cols - 1) - y,
-    y_left = (cols + 1) - y;
-
-  const horizontal = cols - y;
-
-  let i_topright = x_top - y_right;
+  const left = i-1, right = i+1; 
+  let i_topright = right - cols;
   i_topright = checkTop(i_topright, cols, x);
 
-  let i_top = x_top - horizontal;
+  let i_top = i - cols;
   i_top = checkTop(i_top, cols, x);
 
-  let i_topleft = x_top - y_left;
+  let i_topleft = left - cols;
   i_topleft = checkTop(i_topleft, cols, x);
 
-  let i_bottomright = x_bottom - y_right;
+  let i_bottomright = right + cols;
   i_bottomright = checkBottom(i_bottomright, rows, cols, x);
 
-  let i_bottom = x_bottom - horizontal;
+  let i_bottom = i + cols;
   i_bottom = checkBottom(i_bottom, rows, cols, x);
 
-  let i_bottomleft = x_bottom - y_left;
+  let i_bottomleft = left + cols;
   i_bottomleft = checkBottom(i_bottomleft, rows, cols, x);
 
-  const i_right = Math.ceil((i + 1)/cols) > x ? 0 : i+1;
-  const i_left = Math.ceil((i - 1)/cols) < x ? 0 : i-1;
+  const i_right = Math.ceil(right/cols) > x ? 0 : right;
+  const i_left = Math.ceil(left/cols) < x ? 0 : left;
 
   return [
     i_top,
