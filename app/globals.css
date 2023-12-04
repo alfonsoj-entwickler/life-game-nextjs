@@ -97,15 +97,15 @@ body {
 }
 
 .opacity-animate-1 {
-  animation: opacity-animate 3s infinite cubic-bezier(0.71, 0.51,  0.69, 0.342) alternate;
+  animation: opacity-animate 1s infinite cubic-bezier(0.71, 0.51,  0.69, 0.342) alternate;
 }
 
 .opacity-animate-2 {
-  animation: opacity-animate 2s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94) alternate;
+  animation: opacity-animate 1s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94) alternate;
 }
 
 .opacity-animate-3 {
-  animation: opacity-animate 4s infinite cubic-bezier(0.455, 0.03, 0.515, 0.955) alternate;
+  animation: opacity-animate 1s infinite cubic-bezier(0.455, 0.03, 0.515, 0.955) alternate;
 }
 
 @keyframes rotation {
@@ -133,14 +133,14 @@ body {
 
 @keyframes opacity-animate {
   0% {
-    opacity: 0.15;
+    opacity: 0.3;
   }
 
   50% {
-    opacity: 0.45;
+    opacity: 0.6;
   }
 
   100% {
-    opacity: 0.85;
+    opacity: 0.9;
   }
 }
