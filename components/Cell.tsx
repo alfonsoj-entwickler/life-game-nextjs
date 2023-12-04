@@ -12,7 +12,8 @@ type Props = {
 const Cell = ({ item }: Props) => {
   const { sizeCell, updateActiveCell } = useActionConfig();
   const { stateAnimations, stateIndex } = useLayerConfig();
-  const rotateModel = `rotate-${item.rotate}`; 
+  const rotateModel = `rotate-${item.rotate}`;
+  const opacityModel = `opacity-animate-${randomModelCell(3)}`;
 
   const handleClick = (e: MouseEvent) => {
     updateActiveCell([{ index: item.index, life: !item.active }]);
@@ -49,7 +50,7 @@ const Cell = ({ item }: Props) => {
         } w-full h-full`}
       >
         {item.model === "c" ? (
-          <div className={`absolute top-0 bottom-0 right-0 left-0 bg-black opacity-50 w-full h-full border-2 opacity-animate-${randomModelCell(3)}`} />
+          <div className={`absolute top-0 bottom-0 right-0 left-0 bg-black opacity-70 w-full h-full border-2 ${stateAnimations ? opacityModel : "opacity-none"}`} />
         ) : (
           <div className={`${stateAnimations ? rotateModel : "rotate-none"}`}>
             <Image
