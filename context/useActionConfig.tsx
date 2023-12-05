@@ -21,7 +21,7 @@ interface CellState {
   setModelCells: (model: string) => void;
   setCells: (cells: Cells) => void;
   resetCells: (width: number | undefined, height: number | undefined) => void;
-  updateActiveCell: (states: stateCells[] ) => void;
+  updateActiveCell: (states: stateCells[]) => void;
   setLoading: (status: boolean) => void;
 }
 
@@ -82,7 +82,9 @@ export const useActionConfig = create<CellState>()((set) => ({
             column = i % columnsCell === 0 ? 1 : column + 1;
             return new_cell;
           });
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
         return {
           cells: cellsArray,
           lifeCells: 0,
@@ -102,9 +104,9 @@ export const useActionConfig = create<CellState>()((set) => ({
         currentDie = dieCells,
         currentLife = lifeCells;
       if (cells) {
-        states.forEach(item => {
+        states.forEach((item) => {
           const correctIndex = item.index - 1;
-          if( cells[correctIndex].active !== item.life ) {
+          if (cells[correctIndex].active !== item.life) {
             cells[correctIndex].active = item.life;
             cells[correctIndex].active ? currentLife++ : currentDie++;
             currentTotal++;
