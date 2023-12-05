@@ -4,6 +4,7 @@ import Cell from "./Cell";
 import useWindowSize from "@/hooks/useWindowSize";
 import { useActionConfig } from "@/context/useActionConfig";
 import { useLayerConfig } from "@/context/useLayerConfig";
+import Loader from "./Loader";
 
 const Layer = () => {
   const { cells, loading, resetCells } = useActionConfig();
@@ -21,9 +22,7 @@ const Layer = () => {
       }`}
     >
       {loading ? (
-        <div className="flex justify-center items-center">
-          <p className="text-6xl">Loading ...</p>
-        </div>
+        <Loader />
       ) : (
         <>
           {cells?.map((item) => (
