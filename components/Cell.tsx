@@ -45,7 +45,7 @@ const Cell = ({ item }: Props) => {
         <span className="absolute top-0 left-0 w-full h-full border border-solid border-slate-500/30" />
       </span>
       <div
-        className={`relative overflow-hidden ${
+        className={`relative overflow-hidden opacity-cell ${
           item.active ? "block" : "hidden"
         } w-full h-full`}
       >
