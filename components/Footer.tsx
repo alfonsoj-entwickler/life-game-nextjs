@@ -45,7 +45,7 @@ const Footer = () => {
           <Select
             id={"size-cell"}
             name={"size"}
-            title="Choose a size:"
+            title="Size"
             value={sizeCell}
             options={valuesSize}
             handlerChange={handlerSelectSize}
@@ -53,7 +53,7 @@ const Footer = () => {
           <Select
             id={"model-cell"}
             name={"models"}
-            title="Choose a model:"
+            title="Model"
             value={modelCell}
             options={valuesModels}
             handlerChange={handlerSelectModel}
