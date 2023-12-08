@@ -1,14 +1,9 @@
 "use client";
 import CountUp from "./CountUp";
 import { useActionConfig } from "@/context/useActionConfig";
-import { useLayerConfig } from "@/context/useLayerConfig";
 
 const Header = () => {
   const { rows, columns, lifeCells, dieCells, totalCells } = useActionConfig();
-  const {
-
-    stateWorld
-  } = useLayerConfig();
 
   return (
     <header className="w-screen h-[4rem] px-10 flex justify-between items-center bg-[#ee7752] text-gray-900 z-10">

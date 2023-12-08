@@ -2,12 +2,11 @@ import { ReactNode } from "react";
 
 type Props = {
   text: string;
-  border?: boolean;
   onClick?: (a: React.SyntheticEvent<HTMLButtonElement>) => unknown;
   children?: ReactNode;
 };
 
-const Button = ({ text, border = false, onClick, children }: Props) => {
+const Button = ({ text, onClick, children }: Props) => {
   return (
     <button
       type="button"
