@@ -30,6 +30,9 @@ const Footer = () => {
   const handlerSelectSize = (e: ChangeEvent<HTMLSelectElement>) => {
     setSizeCells(Number(e.target.value));
     //ToDo: delete reset layer and update cells
+    if(e.target.value === "20") {
+      setModelCells("c");
+    }
     resetCells(windowSize.width, windowSize.height);
   };
 
