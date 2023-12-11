@@ -13,28 +13,26 @@ const Header = () => {
       <div className="w-1/3 text-center">
         <CountUp />
       </div>
-      <div className="w-1/3 flex flex-nowrap justify-end items-center space-x-4 text-2xl">
-        <p className="flex">
-          Rows:{" "}
-          <span className="min-w-[2rem] text-slate-600">&nbsp;{rows}</span>
+      <div className="w-1/3 flex flex-nowrap justify-end items-center space-x-4 text-3xl">
+        <p className="flex items-end space-x-2">
+          <span className="block mb-1 text-sm underline">Rows:</span>
+          <span className="min-w-[2rem] text-slate-600">{rows}</span>
         </p>
-        <p className="flex">
-          Columns:{" "}
-          <span className="min-w-[2rem] text-slate-600">&nbsp;{columns}</span>
+        <p className="flex items-end space-x-2">
+          <span className="block mb-1 text-sm underline">Columns:</span>
+          <span className="min-w-[2rem] text-slate-600">{columns}</span>
         </p>
-        <p className="flex">
-          Life:{" "}
-          <span className="min-w-[3rem] text-red-600">&nbsp;{lifeCells}</span>
+        <p className="flex items-end space-x-2">
+          <span className="block mb-1 text-sm underline">Life:</span>
+          <span className="min-w-[3rem] text-red-600">{lifeCells}</span>
         </p>
-        <p className="flex">
-          Die:{" "}
-          <span className="min-w-[3rem] text-blue-600">&nbsp;{dieCells}</span>
+        <p className="flex items-end space-x-2">
+          <span className="block mb-1 text-sm underline">Die:</span>
+          <span className="min-w-[3rem] text-blue-600">{dieCells}</span>
         </p>
-        <p className="flex">
-          Total:{" "}
-          <span className="min-w-[3rem] text-green-600">
-            &nbsp;{totalCells}
-          </span>
+        <p className="flex items-end space-x-2">
+          <span className="block mb-1 text-sm underline">Total:</span>
+          <span className="min-w-[3rem] text-green-600">{totalCells}</span>
         </p>
       </div>
     </header>
