@@ -57,7 +57,9 @@ const CountUp = () => {
     }
   }, [stateClock.time.seconds])
 
-  return <p className="text-2xl">{message}</p>;
+  return <p className="flex justify-center items-center">
+    <span className="w-[10rem] py-1 text-2xl border-4 border-black bg-white/50">{message}</span>
+  </p>;
 };
 
 export default CountUp;
